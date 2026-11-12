@@ -1,5 +1,5 @@
 /* ---------- scroll film ---------- */
-.fl{position:relative;height:1300vh;z-index:2;padding:0!important;margin:0}
+.fl{position:relative;height:1800vh;z-index:2;padding:0!important;margin:0}
 .fl-stick{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;background:var(--abyss)}
 #flCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .fl-fallback{display:none;position:absolute;inset:0}
@@ -106,6 +106,48 @@
   .fl-buy{margin-top:12px;gap:8px}.fl-buy a{padding:12px 14px}.fl-buy b{font-size:20px}.fl-buy span{font-size:13.5px}
   .fl-final{top:auto;bottom:3vh}.fl-logo{width:200px;margin-bottom:8px}.fl-final h2{margin-bottom:16px}
   .fl-foot{margin-top:18px;font-size:10px;gap:8px}.fl-foot nav{gap:4px 14px}
+}
+
+
+/* product tour callout card */
+.fl-call{position:absolute;top:50%;left:max(26px,calc((100vw - var(--maxw))/2 + 26px));transform:translateY(-50%);width:min(380px,32vw);padding:22px 24px;border:1px solid var(--line-hot);border-radius:8px;
+  background:rgba(4,7,13,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--glow);opacity:0;pointer-events:none}
+.fl-call .eyebrow{margin-bottom:12px}
+.fl-call h3{font-size:clamp(26px,2.6vw,36px);color:var(--ice)}
+.fl-call p{color:var(--mute);font-size:16.5px;margin-top:10px;line-height:1.55}
+.fl-call.swap h3,.fl-call.swap p{animation:flswap .5s ease}
+@keyframes flswap{from{opacity:0;transform:translateY(8px)}}
+/* programs */
+.fl-progs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 16px}
+.fl-progs div{padding:16px 10px 14px;border:1px solid var(--line);border-radius:6px;background:rgba(4,7,13,.7);text-align:center;transition:all .35s}
+.fl-progs b{font-family:'Saira Condensed',sans-serif;font-size:52px;line-height:1;color:var(--mute-2);transition:color .35s}
+.fl-progs small{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mute-2);margin-left:3px}
+.fl-progs span{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute-2);margin-top:6px}
+.fl-progs .on{border-color:var(--volt);background:rgba(46,155,255,.12);box-shadow:var(--glow);transform:translateY(-3px)}
+.fl-progs .on b{color:var(--ice)}.fl-progs .on span{color:var(--volt-hot)}
+.fl-tl{position:relative;display:flex;height:30px;border-radius:4px;overflow:hidden;border:1px solid var(--line)}
+.fl-tl i{flex:1;display:grid;place-items:center;font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#cfe6ff;
+  background:repeating-linear-gradient(90deg,rgba(46,155,255,.35) 0 6px,rgba(46,155,255,.12) 6px 12px);border-right:1px solid rgba(4,7,13,.8)}
+.fl-tl i.c{background:rgba(46,155,255,.28)}
+.fl-tl i.soak{background:rgba(210,169,63,.25);color:#f1dca6}
+.fl-tl b{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 10px #fff,0 0 20px var(--volt)}
+/* abilities */
+.fl-abil-wrap{top:50%;transform:translate(-50%,-50%);width:min(1000px,94vw)}
+.fl-abil{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 18px;text-align:left}
+.fl-abil div{padding:18px 18px 16px;border:1px solid var(--line);border-radius:8px;background:rgba(4,7,13,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.fl-abil svg{width:28px;height:28px;fill:none;stroke:var(--volt-hot);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(46,155,255,.7))}
+.fl-abil b{display:block;font-family:'Saira Condensed',sans-serif;font-size:22px;color:var(--ice);margin:8px 0 4px}
+.fl-abil span{font-size:14.5px;color:var(--mute);line-height:1.45}
+.fl-strip{font-size:11.5px;letter-spacing:.14em;color:var(--mute)}
+@media (max-width:820px){
+  .fl-call{left:18px;right:18px;width:auto;top:auto;bottom:6vh;transform:none;padding:14px 16px}
+  .fl-call h3{font-size:24px}.fl-call p{font-size:14.5px}
+  .fl-progs b{font-size:38px}.fl-progs div{padding:10px 6px}
+  .fl-abil-wrap{top:auto;bottom:3vh;transform:none}
+  .fl-abil{grid-template-columns:1fr 1fr;gap:7px;margin:12px 0 10px}
+  .fl-abil div{padding:10px 11px}.fl-abil svg{width:20px;height:20px}.fl-abil b{font-size:16px;margin:4px 0 2px}.fl-abil span{font-size:11.5px}
+  .fl-strip{font-size:9.5px;letter-spacing:.06em}
+  .fl-abil-wrap h2{font-size:30px}
 }
 
 @media (prefers-reduced-motion:reduce){.fl-hud,.fl-ch{transition:none}}

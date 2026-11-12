@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=8">
-<link rel="stylesheet" href="film.css?v=7">
+<link rel="stylesheet" href="film.css?v=9">
 <meta name="robots" content="noindex">
 <script type="application/ld+json">
 {
@@ -87,59 +87,68 @@
     <div class="fl-load mono" id="flLoad"><span>Loading</span><i><b id="flLoadBar"></b></i></div>
     <div class="fl-vig"></div><div class="fl-shade"></div>
 
-    <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".06">
+    <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".05">
       <img class="fl-logo fl-logo-intro" src="img/logo.png" alt="FlushStar Marine Systems">
       <span class="eyebrow mono">Quantum 25 &nbsp;/&nbsp; Automatic Marine Flushing System</span>
       <h1>Cleaner engines.<br><em>Longer life.</em></h1>
     </div>
 
-    <div class="fl-ch fl-l" data-a=".085" data-b=".165">
-      <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
-      <h2>Every run pulls <em>saltwater</em> through.</h2>
-      <p>Your outboard cools itself with the water it runs in, straight through every passage inside the engine.</p>
-    </div>
-    <div class="fl-ch fl-l" data-a=".185" data-b=".29">
+    <div class="fl-ch fl-l" data-a=".07" data-b=".145">
       <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
       <h2>Salt never stops <em>working.</em></h2>
-      <p>Saltwater quietly wears down every cooling passage in your outboard. Every run leaves salt, sand and mineral buildup behind.</p>
+      <p>Your outboard cools itself with the water it runs in. Saltwater quietly wears down every cooling passage, every single run.</p>
     </div>
-    <div class="fl-ch fl-l" data-a=".315" data-b=".38">
+    <div class="fl-ch fl-l" data-a=".16" data-b=".215">
       <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
       <h2>This is what it <em>leaves behind.</em></h2>
       <p>Salt from an unflushed passage. Left alone, it blocks the cooling circuit and eats the metal around it.</p>
     </div>
 
-    <div class="fl-ch fl-l" data-a=".395" data-b=".465">
-      <span class="eyebrow mono">02 &nbsp;/&nbsp; The system</span>
-      <h2>One manifold. <em>Up to six engines.</em></h2>
-      <p>12VDC Plug n Play. Runs off a standard garden hose and feeds every engine from a single supply.</p>
+    <div class="fl-ch fl-l" data-a=".235" data-b=".285">
+      <span class="eyebrow mono">02 &nbsp;/&nbsp; The product</span>
+      <h2>Meet the <em>Quantum 25.</em></h2>
+      <p>An automatic flushing system that mounts on your boat and cleans every engine for you, at the push of a button.</p>
     </div>
 
-    <div class="fl-ch fl-r" data-a=".49" data-b=".69">
-      <span class="eyebrow mono">03 &nbsp;/&nbsp; The cycle</span>
+    <div class="fl-call" id="flCall" aria-live="polite">
+      <span class="eyebrow mono" id="flCallN">01 / 06</span>
+      <h3 id="flCallT"></h3>
+      <p id="flCallP"></p>
+    </div>
+
+    <div class="fl-ch fl-l fl-wide" data-a=".435" data-b=".52">
+      <span class="eyebrow mono">03 &nbsp;/&nbsp; Programs</span>
+      <h2>Pick your <em>flush.</em></h2>
+      <div class="fl-progs" id="flProgs">
+        <div><b>5</b><small>min</small><span>Standard</span></div>
+        <div><b>7</b><small>min</small><span>Extended</span></div>
+        <div><b>9</b><small>min</small><span>Deep clean</span></div>
+      </div>
+      <div class="fl-tl" id="flTl"><i class="soak">Pre-soak</i><i>Pulse</i><i class="c">Flow</i><i>Pulse</i><i class="c">Flow</i><i>Pulse</i><b id="flTlHead"></b></div>
+      <p>Every program pre-soaks the motor, then switches between pulsating and continuous water flow every 60 seconds.</p>
+    </div>
+
+    <div class="fl-ch fl-r" data-a=".54" data-b=".7">
+      <span class="eyebrow mono">04 &nbsp;/&nbsp; The cycle</span>
       <h2>One push. <em>Engine stays off.</em></h2>
-      <p>Pulsating and continuous water flow clears the full cooling circuit, one engine after another. No hose-holding. No ear muffs. No guesswork.</p>
+      <p>The Quantum 25 works through your engines one after another, on its own. No hose-holding. No ear muffs. No guesswork.</p>
     </div>
 
-    <div class="fl-ch fl-r fl-wide" data-a=".715" data-b=".8">
-      <span class="eyebrow mono">04 &nbsp;/&nbsp; Specification</span>
-      <h2>The short <em>version.</em></h2>
-      <dl class="fl-specs">
-        <div><dt>Engines supported</dt><dd>1 &ndash; 6</dd></div>
-        <div><dt>Power</dt><dd>12VDC</dd></div>
-        <div><dt>Installation</dt><dd>Plug n Play</dd></div>
-        <div><dt>Water supply</dt><dd>Garden hose</dd></div>
-        <div><dt>Engine must run</dt><dd>No</dd></div>
-        <div><dt>Boat in or out of water</dt><dd>Either</dd></div>
-        <div><dt>Engine makes</dt><dd>Yamaha, Mercury, Suzuki, Honda</dd></div>
-        <div><dt>Fits existing boats</dt><dd>Yes &mdash; retrofit</dd></div>
-        <div><dt>Diagnostics</dt><dd>Runtime + cycle count</dd></div>
-        <div><dt>Limited warranty</dt><dd>3 years</dd></div>
-      </dl>
+    <div class="fl-ch fl-c fl-abil-wrap" data-a=".72" data-b=".805">
+      <span class="eyebrow mono">05 &nbsp;/&nbsp; What it does</span>
+      <h2>Built to do the <em>work for you.</em></h2>
+      <div class="fl-abil">
+        <div><svg viewBox="0 0 24 24"><path d="M12 3v9M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><b>Engine stays off</b><span>Flushes with the motor at rest. No running it on muffs.</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M5 12l2-6h10l2 6"/></svg><b>In or out of the water</b><span>At the dock, on the lift or on the trailer.</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="8" cy="7" r="1.6"/><circle cx="14" cy="12" r="1.6"/><circle cx="10" cy="17" r="1.6"/></svg><b>1 to 6 engines</b><span>One manifold feeds every engine from one supply.</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M12 3c3 4.5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 3-6.5 6-11z"/><path d="M9 14h6"/></svg><b>Quantum Pulse</b><span>Pulsating and continuous flow through the full cooling circuit.</span></div>
+        <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M7 13l3-3 2 2 4-4"/></svg><b>Diagnostics</b><span>Tracks runtime and cycle count.</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg><b>Fits your boat</b><span>Retrofits to boats you already own. 12VDC Plug n Play.</span></div>
+      </div>
+      <div class="fl-strip mono">Yamaha &middot; Mercury &middot; Suzuki &middot; Honda &nbsp;|&nbsp; Garden hose supply &nbsp;|&nbsp; 3-year limited warranty</div>
     </div>
-
-    <div class="fl-ch fl-l fl-wide" data-a=".82" data-b=".885">
-      <span class="eyebrow mono">05 &nbsp;/&nbsp; How to buy</span>
+    <div class="fl-ch fl-l fl-wide" data-a=".825" data-b=".89">
+      <span class="eyebrow mono">06 &nbsp;/&nbsp; How to buy</span>
       <h2>Two ways to <em>get one.</em></h2>
       <div class="fl-buy">
         <a href="https://www.flushstarmarine.com/contact.php"><small class="mono">Direct</small><b>Call us for pricing</b><span>Tell us your engine count and make, and we will price the right configuration for your boat.</span></a>
@@ -147,7 +156,7 @@
       </div>
     </div>
 
-    <div class="fl-ch fl-c fl-final" data-a=".905" data-b="2">
+    <div class="fl-ch fl-c fl-final" data-a=".91" data-b="2">
       <img class="fl-logo" src="img/logo.png" alt="FlushStar Marine Systems">
       <h2>Every engine. <em>Flushed.</em></h2>
       <div class="hero-cta">
@@ -171,13 +180,13 @@
       </div>
     </div>
 
-    <div class="fl-rail" id="flRail" aria-hidden="true"><span>Intro</span><span>Problem</span><span>System</span><span>Cycle</span><span>Specs</span><span>Buy</span><span>Contact</span></div>
+    <div class="fl-rail" id="flRail" aria-hidden="true"><span>Intro</span><span>Problem</span><span>Product</span><span>Programs</span><span>Cycle</span><span>Abilities</span><span>Buy</span><span>Contact</span></div>
     <div class="fl-cue mono" id="flCue"><span>Scroll</span><i></i></div>
   </div>
 </section>
 </main>
 
 <script>document.getElementById('flYear').textContent=new Date().getFullYear();</script>
-<script src="film3.js?v=2"></script>
+<script src="film3.js?v=4"></script>
 </body>
 </html>

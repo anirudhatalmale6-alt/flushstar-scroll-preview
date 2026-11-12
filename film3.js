@@ -27,7 +27,7 @@
     honda: { d: seq('hondaD', 72), m: seq('hondaM', 72) }
   };
   const PHOTO = {};
-  ['unit-corrosion', 'manifold', 'outboards', 'wake'].forEach(k => { const i = new Image(); i.src = `img/${k}.jpg`; PHOTO[k] = i; });
+  ['unit-corrosion', 'manifold', 'product', 'wake'].forEach(k => { const i = new Image(); i.src = `img/${k}.jpg`; PHOTO[k] = i; });
 
   let mob = portrait();
   const pick = k => mob ? SEQ[k].m : SEQ[k].d;
@@ -128,65 +128,153 @@
   }
 
   // ---------- story ----------
-  const FLUSH = [.5, .69];
+  // Product callouts: anchor points on img/product.jpg (fractions of 1040x624), visited one by one
+  const CALLS = [
+    { u: .087, v: .49, z: 2.6, t: 'One-touch operation', p: 'Press once. The Quantum 25 runs the whole cycle by itself, start to finish.' },
+    { u: .23,  v: .4,  z: 2.0, t: 'Every engine on its own line', p: 'PORT, ENG 2, ENG 3, STBD. Each outboard gets its own flush, up to six engines.' },
+    { u: .24,  v: .78, z: 2.2, t: 'Marine-grade brass outlets', p: 'One garden hose in, a dedicated line out to each engine\'s flush port.' },
+    { u: .87,  v: .5,  z: 2.4, t: 'Quantum Pulse Technology', p: 'Alternates pulsating and continuous water flow through the full cooling circuit.' },
+    { u: .72,  v: .88, z: 2.2, t: '12VDC Plug n Play', p: 'Runs off the boat\'s 12 volt power. No programming required.' },
+    { u: .65,  v: .7,  z: 2.3, t: 'Made in the U.S.A.', p: 'Built for saltwater and backed by a 3-year limited warranty.' }
+  ];
+  const BTN = [[.087, .49], [.186, .49], [.286, .49], [.386, .49]];   // the four switch buttons
+  const PROD = [.215, .435], CALL0 = .29, CALLW = (PROD[1] - .005 - CALL0) / CALLS.length;
+  const FLUSH = [.555, .695];
   const ENG = ['Port', 'Eng 2', 'Eng 3', 'Stbd'];
   const engK = (i, p) => clamp((p - FLUSH[0] - i * (FLUSH[1] - FLUSH[0]) / 4) / ((FLUSH[1] - FLUSH[0]) / 4), -1, 2);
+  let lastProd = null;
+
+  // place an image so that image point (fu,fv) lands at screen point (sx,sy), at `zoom` x cover scale
+  function placeAt(img, zoom, fu, fv, sx, sy) {
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const s = Math.max(cv.width / iw, cv.height / ih) * zoom, dw = iw * s, dh = ih * s;
+    let x = sx * cv.width - fu * dw, y = sy * cv.height - fv * dh;
+    x = clamp(x, cv.width - dw, 0); y = clamp(y, cv.height - dh, 0);
+    return { x, y, s, map: (u, v) => [x + u * dw, y + v * dh] };
+  }
+  // the product shot with feathered edges, so it can float in darkness during the reveal
+  let featherImg = null;
+  function feathered() {
+    const img = PHOTO.product; if (featherImg || !img.naturalWidth) return featherImg;
+    const w = img.naturalWidth, h = img.naturalHeight, c = document.createElement('canvas'); c.width = w; c.height = h;
+    const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+    const d = g.getImageData(0, 0, w, h), px = d.data, fw = w * .07, fh = h * .1;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const e = Math.min(x / fw, (w - 1 - x) / fw, y / fh, (h - 1 - y) / fh, 1);
+      px[(y * w + x) * 4 + 3] = 255 * e * e * (3 - 2 * e);
+    }
+    g.putImageData(d, 0, 0); featherImg = c; return c;
+  }
+  function productScene(p, a, time) {
+    const img = PHOTO.product; if (!img.naturalWidth || a <= 0) return null;
+    const fimg = feathered();
+    // camera: whole product during the reveal, then travel feature to feature
+    const ci = clamp((p - CALL0) / CALLW, -1, CALLS.length - .001);
+    let fu = .5, fv = .5, z = 1.02, sx = mob ? .5 : .62, sy = mob ? .34 : .5;
+    if (ci >= 0) {
+      const i = Math.floor(ci), f = ci - i, k = sm(0, .35, f);
+      const A = CALLS[Math.max(0, i - 1)], B = CALLS[i];
+      const from = i === 0 ? { u: .5, v: .5, z: 1.02 } : A;
+      fu = lerp(from.u, B.u, k); fv = lerp(from.v, B.v, k); z = lerp(from.z, B.z, k) * (mob ? .62 : 1);
+    } else z = lerp(1.25, 1.02, sm(PROD[0], CALL0, p));
+    // pull back out at the end of the walkthrough
+    const out = sm(PROD[1] - .025, PROD[1], p);
+    fu = lerp(fu, .5, out); fv = lerp(fv, .5, out); z = lerp(z, 1.02, out);
+    // reveal: product floats at a fixed share of the screen width; tour: cover-scale close-ups
+    const iw = img.naturalWidth, ih = img.naturalHeight, cover = Math.max(cv.width / iw, cv.height / ih);
+    const reveal = (mob ? .96 : .6) * cv.width / iw;
+    const tour = clamp((p - CALL0 + .02) / .03) * (1 - out);
+    const S = lerp(reveal * (1.12 - .12 * sm(PROD[0], CALL0, p)), cover * z, tour);
+    const dw = iw * S, dh = ih * S;
+    let X = (tour > 0 ? sx : lerp(sx, mob ? .5 : .64, 1 - tour)) * cv.width - lerp(.5, fu, tour) * dw;
+    let Y = sy * cv.height - lerp(.5, fv, tour) * dh;
+    if (tour >= 1 && !mob) { X = clamp(X, cv.width - dw, 0); Y = clamp(Y, cv.height - dh, 0); }
+    const P = { x: X, y: Y, s: S, map: (u, v) => [X + u * dw, Y + v * dh] };
+    cx.globalAlpha = a; cx.drawImage(tour >= 1 && !mob ? img : (fimg || img), P.x, P.y, dw, dh);
+    // light sweep across the panels
+    const sw = ((time * .18) % 1.6) - .3;
+    const g = cx.createLinearGradient(P.map(sw - .12, 0)[0], 0, P.map(sw + .12, 0)[0], 0);
+    g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(.5, 'rgba(180,215,255,.10)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    cx.fillStyle = g; cx.globalCompositeOperation = 'screen'; cx.fillRect(0, 0, cv.width, cv.height); cx.globalCompositeOperation = 'source-over';
+    // switch buttons light up one after another
+    BTN.forEach(([u, v], i) => {
+      const on = .5 + .5 * Math.sin(time * 3 - i * .9);
+      const [x, y] = P.map(u, v), r = 52 * P.s;
+      const rg = cx.createRadialGradient(x, y, r * .3, x, y, r * 1.6);
+      rg.addColorStop(0, `rgba(80,170,255,${.35 * on})`); rg.addColorStop(1, 'rgba(46,155,255,0)');
+      cx.fillStyle = rg; cx.globalCompositeOperation = 'lighter'; cx.beginPath(); cx.arc(x, y, r * 1.6, 0, 7); cx.fill(); cx.globalCompositeOperation = 'source-over';
+    });
+    cx.globalAlpha = 1;
+    // soft vignette so the product sits in darkness
+    const vg = cx.createRadialGradient(cv.width * sx, cv.height * sy, Math.min(cv.width, cv.height) * .35, cv.width * sx, cv.height * sy, Math.max(cv.width, cv.height) * .8);
+    vg.addColorStop(0, 'rgba(4,7,13,0)'); vg.addColorStop(1, `rgba(4,7,13,${.75 * a})`);
+    cx.fillStyle = vg; cx.fillRect(0, 0, cv.width, cv.height);
+    return P;
+  }
 
   function scene(p, time) {
     cx.fillStyle = '#04070D'; cx.fillRect(0, 0, cv.width, cv.height);
     const fadeIn = (a, b) => sm(a, b, p), fadeOut = (a, b) => 1 - sm(a, b, p);
 
     // 1. underwater: the propeller turning in saltwater (footage)
-    const a1 = fadeOut(.16, .19);
-    if (a1 > 0) draw(frameOf(pick('prop'), p / .19), a1, 1 + p * .5, mob ? .5 : .45, .45);
+    const a1 = fadeOut(.065, .085);
+    if (a1 > 0) draw(frameOf(pick('prop'), p / .085), a1, 1 + p * 1.2, mob ? .5 : .45, .45);
 
     // 2. twin outboards running, wake behind (footage)
-    const a2 = fadeIn(.16, .19) * fadeOut(.295, .32);
-    if (a2 > 0) draw(frameOf(pick('twin'), (p - .16) / .16), a2, 1 + (p - .16) * .4, .5, .5, 'brightness(.82) contrast(1.05)');
+    const a2 = fadeIn(.065, .085) * fadeOut(.145, .16);
+    if (a2 > 0) draw(frameOf(pick('twin'), (p - .065) / .095), a2, 1 + (p - .065) * .8, .5, .5, 'brightness(.82) contrast(1.05)');
 
-    // 3. FlushStar's own photo: salt on a part, pulling back to reveal the Quantum 25
-    const a3 = fadeIn(.295, .32) * fadeOut(.47, .5);
-    if (a3 > 0) {
-      const k = sm(.31, .45, p);
-      draw(PHOTO['unit-corrosion'], a3, lerp(mob ? 2.4 : 2.3, mob ? 1 : 1.02, k), lerp(mob ? .74 : .6, mob ? .7 : .55, k), lerp(.22, mob ? .6 : .55, k));
-    }
+    // 3. salt on a part (FlushStar photo)
+    const a3 = fadeIn(.145, .16) * fadeOut(.212, .232);
+    if (a3 > 0) draw(PHOTO['unit-corrosion'], a3, lerp(mob ? 2.6 : 2.4, mob ? 2.1 : 1.9, sm(.15, .23, p)), mob ? .74 : .62, .22);
 
-    // 4. the real install: manifold + hoses, the flush cycle running
-    const a4 = fadeIn(.47, .5) * fadeOut(.695, .72);
-    if (a4 > 0) {
-      const k = sm(.48, .7, p);
-      const P = draw(PHOTO['manifold'], a4, lerp(1.02, mob ? 1.12 : 1.12, k), mob ? lerp(.6, .74, k) : lerp(.42, .5, k), lerp(.46, mob ? .55 : .5, k));
+    // 4. THE PRODUCT: reveal, then a guided tour of its features
+    const a4 = fadeIn(.212, .235) * fadeOut(.43, .45);
+    lastProd = a4 > 0 ? productScene(p, a4, time) : null;
+
+    // 5. programs: the switch panel on the real install
+    const a5 = fadeIn(.43, .45) * fadeOut(.525, .545);
+    if (a5 > 0) draw(PHOTO['manifold'], a5, lerp(2.2, 2.4, sm(.43, .545, p)), mob ? .2 : .3, .5, 'brightness(.38) blur(1.5px)');
+
+    // 6. the real install: manifold + hoses, the flush cycle running
+    const a6 = fadeIn(.525, .545) * fadeOut(.705, .725);
+    if (a6 > 0) {
+      const k = sm(.53, .72, p);
+      const P = draw(PHOTO['manifold'], a6, lerp(1.02, 1.12, k), mob ? lerp(.6, .74, k) : lerp(.42, .5, k), lerp(.46, mob ? .55 : .5, k));
       let running = -1;
       for (let i = 0; i < 4; i++) { const e = engK(i, p); if (e >= 0 && e <= 1) running = i; }
       const e = running >= 0 ? engK(running, p) : 0;
       const pulse = running >= 0 && e >= .2 && Math.floor((e - .2) / .2) % 2 === 0;
-      const amt = a4 * (running >= 0 ? (e < .2 ? e / .2 : 1) : (p > FLUSH[1] ? .25 : 0));
+      const amt = a6 * (running >= 0 ? (e < .2 ? e / .2 : 1) : (p > FLUSH[1] ? .25 : 0));
       flows(P, amt, pulse, time);
     }
 
-    // 5. specs over the outboards at the dock
-    const a5 = fadeIn(.695, .72) * fadeOut(.8, .82);
-    if (a5 > 0) draw(PHOTO['manifold'], a5, lerp(1.7, 1.9, sm(.7, .82, p)), mob ? .8 : .62, .32, 'brightness(.5) saturate(.9)');
+    // 7. abilities over the product, dimmed
+    const a7 = fadeIn(.705, .725) * fadeOut(.805, .825);
+    if (a7 > 0) draw(PHOTO.product, a7, lerp(1.1, 1.25, sm(.71, .82, p)), .6, .45, 'brightness(.35) blur(2px)');
 
-    // 6. how to buy: clean engines running (footage)
-    const a6 = fadeIn(.8, .82) * fadeOut(.885, .91);
-    if (a6 > 0) draw(frameOf(pick('honda'), (p - .8) / .11), a6, 1.04, .5, .5, 'brightness(.8)');
+    // 8. how to buy: clean engines running (footage)
+    const a8 = fadeIn(.805, .825) * fadeOut(.89, .91);
+    if (a8 > 0) draw(frameOf(pick('honda'), (p - .805) / .105), a8, 1.04, .5, .5, 'brightness(.8)');
 
-    // 7. contact: open water, the wake behind you
-    const a7 = fadeIn(.885, .91);
-    if (a7 > 0) draw(PHOTO['wake'], a7, lerp(1.25, 1.05, sm(.89, 1, p)), .5, .55, 'brightness(.55) saturate(1.1)');
+    // 9. contact: open water, the wake behind you
+    const a9 = fadeIn(.89, .91);
+    if (a9 > 0) draw(PHOTO['wake'], a9, lerp(1.25, 1.05, sm(.89, 1, p)), .5, .55, 'brightness(.55) saturate(1.1)');
   }
-
   // ---------- overlays ----------
-  const marks = [0, .075, .385, .48, .7, .81, .895, 1];
+  const marks = [0, .065, .215, .435, .54, .715, .815, .9, 1];
+  const call = document.getElementById('flCall'), callN = document.getElementById('flCallN'), callT = document.getElementById('flCallT'), callP = document.getElementById('flCallP');
+  const progs = [...document.querySelectorAll('#flProgs div')], tlHead = document.getElementById('flTlHead');
+  let callIdx = -1;
   function overlays(p) {
     const narrow = innerWidth <= 820;
     chaps.forEach(c => {
-      const a = +c.dataset.a, b = +c.dataset.b, f = .022;
+      const a = +c.dataset.a, b = +c.dataset.b, f = .018;
       const o = Math.min(sm(a, a + f, p), 1 - sm(b - f, b, p));
       const y = (1 - o) * 26 * (p < (a + b) / 2 ? 1 : -1);
       c.style.opacity = o.toFixed(3); c.classList.toggle('on', o > .5);
-      if (c.classList.contains('fl-c')) c.style.transform = narrow ? `translateY(${y}px)` : `translate(-50%,${y}px)`;
+      if (c.classList.contains('fl-abil-wrap') && !narrow) c.style.transform = `translate(-50%,calc(-50% + ${y}px))`;
+      else if (c.classList.contains('fl-c')) c.style.transform = narrow ? `translateY(${y}px)` : `translate(-50%,${y}px)`;
       else c.style.transform = narrow ? `translateY(${y}px)` : `translateY(calc(-50% + ${y}px))`;
     });
     rail.forEach((r, i) => {
@@ -194,10 +282,26 @@
       r.style.setProperty('--k', (k * 100).toFixed(1) + '%');
       r.classList.toggle('on', p >= marks[i] && (p < marks[i + 1] || i === rail.length - 1));
     });
-    rail[0].parentNode.style.opacity = p > .895 ? 0 : 1;
-    cue.style.opacity = p > .015 ? 0 : 1;
+    rail[0].parentNode.style.opacity = p > .9 ? 0 : 1;
+    cue.style.opacity = p > .012 ? 0 : 1;
 
-    hud.classList.toggle('on', p > FLUSH[0] - .02 && p < FLUSH[1] + .012);
+    // product callout card
+    const ci = (p - CALL0) / CALLW;
+    const idx = ci >= 0 && p < PROD[1] - .01 ? Math.min(CALLS.length - 1, Math.floor(ci)) : -1;
+    if (idx !== callIdx && idx >= 0) {
+      callIdx = idx; const C = CALLS[idx];
+      callN.textContent = `0${idx + 1} / 0${CALLS.length}`; callT.textContent = C.t; callP.textContent = C.p;
+      call.classList.remove('swap'); void call.offsetWidth; call.classList.add('swap');
+    }
+    const f = ci - Math.floor(ci);
+    call.style.opacity = idx >= 0 ? Math.min(sm(.12, .3, f), 1 - sm(.92, 1, f) * (idx === CALLS.length - 1 ? 1 : 0)).toFixed(3) : 0;
+
+    // programs: highlight 5 / 7 / 9 and run the timeline head
+    const pk = clamp((p - .445) / (.515 - .445));
+    progs.forEach((d, i) => d.classList.toggle('on', i === Math.min(2, Math.floor(pk * 3))));
+    tlHead.style.left = ((pk * 3 % 1) * 100).toFixed(1) + '%';
+
+    hud.classList.toggle('on', p > FLUSH[0] - .015 && p < FLUSH[1] + .01);
     let mode = 'Standby';
     hudEng.forEach((el, i) => {
       const k = engK(i, p), run = k >= 0 && k <= 1, ok = k > 1;
@@ -213,6 +317,25 @@
     hudClock.textContent = `${String(Math.floor(secs / 60)).padStart(2, '0')}:${String(secs % 60).padStart(2, '0')}`;
   }
 
+  // callout pointer: a ring on the feature and a line to the card
+  function pointer(p) {
+    const ci = (p - CALL0) / CALLW;
+    if (!lastProd || ci < 0 || p > PROD[1] - .012) return;
+    const idx = Math.min(CALLS.length - 1, Math.floor(ci)), f = ci - Math.floor(ci);
+    const a = sm(.3, .45, f) * (idx === CALLS.length - 1 ? 1 - sm(.85, 1, f) : 1);
+    if (a <= 0) return;
+    const [x, y] = lastProd.map(CALLS[idx].u, CALLS[idx].v);
+    const r = cv.getBoundingClientRect(), b = call.getBoundingClientRect();
+    const tx = ((narrow() ? b.left + b.width * .5 : b.right) - r.left) * DPR, ty = ((narrow() ? b.top : b.top + b.height * .5) - r.top) * DPR;
+    const t = performance.now() / 1000;
+    cx.save(); cx.globalAlpha = a; cx.strokeStyle = '#6FCBFF'; cx.fillStyle = '#6FCBFF'; cx.shadowColor = '#2E9BFF'; cx.shadowBlur = 16 * DPR;
+    cx.lineWidth = 1.5 * DPR;
+    cx.beginPath(); cx.moveTo(tx, ty); cx.lineTo(x, y); cx.stroke();
+    cx.beginPath(); cx.arc(x, y, 6 * DPR, 0, 7); cx.fill();
+    for (let k = 0; k < 2; k++) { const ph = (t * .8 + k * .5) % 1; cx.globalAlpha = a * (1 - ph); cx.beginPath(); cx.arc(x, y, (8 + ph * 30) * DPR, 0, 7); cx.stroke(); }
+    cx.restore();
+  }
+  const narrow = () => innerWidth <= 820;
   // ---------- loop ----------
   const readP = () => { const r = film.getBoundingClientRect(); return clamp(-r.top / (film.offsetHeight - stick.clientHeight)); };
   let target = readP(), p = target, last = performance.now(), time = 0, visible = true;
@@ -226,6 +349,7 @@
     if (Math.abs(target - p) < 1e-5) p = target;
     overlays(p);
     scene(p, time);
+    pointer(p);
   }
   requestAnimationFrame(t => { last = t; frame(t); });
 })();
