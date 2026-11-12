@@ -284,7 +284,7 @@ if (!renderer) {
     [.72, V(3.2, 1.0, 8.6), V(2.7, .2, 0)],
     [.79, V(-5.2, 3.4, 7.9), V(-2.9, -.2, -.5)],// how to buy: over the transom
     [.86, V(-4.0, 2.6, 7.4), V(-3.4, -.1, -.4)],
-    [.94, V(0, 2.6, 13), V(0, -1.9, 0)]         // contact: the whole rig, high in frame
+    [.94, V(0, 3.0, 15), V(0, -1.45, 0)]        // contact: the whole rig, high in frame
   ];
   const cp = new THREE.Vector3(), ct = new THREE.Vector3();
   function camAt(p) {

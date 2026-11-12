@@ -10,6 +10,7 @@
 
 .fl-ch{position:absolute;top:50%;width:min(470px,40vw);opacity:0;pointer-events:none;will-change:opacity,transform}
 .fl-ch.on{pointer-events:auto}
+.fl-final::before{content:"";position:absolute;inset:-40px -60px -30px;background:radial-gradient(closest-side,rgba(2,4,9,.8),rgba(2,4,9,.5) 65%,transparent);z-index:-1;pointer-events:none}
 .fl-l::before,.fl-r::before{content:"";position:absolute;inset:-70px -110px;background:radial-gradient(closest-side,rgba(2,4,9,.72),rgba(2,4,9,.4) 60%,transparent);z-index:-1;pointer-events:none}
 .fl-l{left:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
 .fl-r{right:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
