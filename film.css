@@ -20,8 +20,21 @@
 .fl-l{left:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
 .fl-r{right:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
 .fl-c{left:50%;width:min(860px,92vw);text-align:center}
-.fl-intro{top:11vh}
-.fl-logo-intro{width:min(260px,56vw);margin-bottom:22px;filter:drop-shadow(0 2px 14px rgba(0,0,0,.75)) drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.fl-intro{top:9vh}
+.fl-brand{position:relative;width:min(620px,84vw);margin:0 auto 26px;animation:flbrand 1.6s .3s cubic-bezier(.2,.8,.2,1) both}
+.fl-brand .fl-logo-intro{display:block;width:100%;max-width:none;height:auto;margin:0;filter:drop-shadow(0 0 2px rgba(0,0,0,.9)) drop-shadow(0 4px 22px rgba(0,0,0,.7)) drop-shadow(0 0 26px rgba(46,155,255,.75));animation:flglow 3.4s ease-in-out infinite}
+/* metallic shine that only touches the logo's own pixels */
+.fl-brand::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.95) 49%,rgba(160,215,255,.6) 52%,transparent 62%) no-repeat;background-size:260% 100%;
+  -webkit-mask:url(img/logo.png) center/100% 100% no-repeat;mask:url(img/logo.png) center/100% 100% no-repeat;animation:flshine 3.4s 1.2s ease-in-out infinite}
+.fl-sparkle{position:absolute;left:90.6%;top:3%;width:7%;aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(circle,#fff 0 6%,rgba(160,215,255,.9) 12%,transparent 46%),
+    linear-gradient(90deg,transparent 47%,#fff 50%,transparent 53%),linear-gradient(0deg,transparent 47%,#fff 50%,transparent 53%);
+  filter:drop-shadow(0 0 8px #6FCBFF);animation:flspark 3.4s 1.6s ease-in-out infinite;opacity:0}
+@keyframes flbrand{from{opacity:0;transform:scale(.86);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes flglow{50%{filter:drop-shadow(0 0 2px rgba(0,0,0,.9)) drop-shadow(0 4px 22px rgba(0,0,0,.7)) drop-shadow(0 0 40px rgba(46,155,255,1))}}
+@keyframes flshine{0%{background-position:130% 0}45%,100%{background-position:-30% 0}}
+@keyframes flspark{0%,40%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(0)}52%{opacity:1;transform:translate(-50%,-50%) scale(1.25) rotate(45deg)}70%,100%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(90deg)}}
 .fl-intro::before{content:"";position:absolute;inset:-60px -120px;background:radial-gradient(closest-side,rgba(2,4,9,.55),rgba(2,4,9,.25) 60%,transparent);z-index:-1;pointer-events:none}
 .fl-final{top:auto;bottom:7vh}
 .fl-ch .eyebrow{margin-bottom:18px}

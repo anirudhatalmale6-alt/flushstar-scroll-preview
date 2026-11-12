@@ -47,12 +47,11 @@
   }
   // first: every 3rd frame of the opening clip (fast start), then fill in, then the rest
   (async () => {
-    const first = pick('prop');
+    const first = pick('twin');
     let got = 0; const need = Math.ceil(first.n / 3);
     await loadSeq(first, 3, () => { got++; loadBar.style.width = (got / need * 100) + '%'; });
     loadEl.classList.add('done');
     await loadSeq(first, 1);
-    await loadSeq(pick('twin'), 2); await loadSeq(pick('twin'), 1);
     await loadSeq(pick('honda'), 2); await loadSeq(pick('honda'), 1);
   })();
   function frameOf(s, k) {
@@ -212,13 +211,39 @@
     return P;
   }
 
+  // blue sparks drifting up through the opening shot
+  const SPARK = Array.from({ length: 110 }, () => ({ x: Math.random(), y: Math.random(), v: .03 + Math.random() * .08, r: .6 + Math.random() * 1.8, ph: Math.random() * 6 }));
+  function opener(p, a, time) {
+    const k = sm(0, .075, p);
+    const lit = sm(0, 1.4, time);                       // lights come up when the page opens
+    const P = draw(PHOTO.manifold, a * lit, lerp(mob ? 2.4 : 2.0, mob ? 1.25 : 1.06, k), lerp(mob ? .8 : .78, .5, k), lerp(mob ? .58 : .34, .5, k),
+      `brightness(${lerp(.9, 1.05, k)}) saturate(1.45) contrast(1.15)`);
+    flows(P, a * lit * (.8 + .2 * Math.sin(time * 2.2)), false, time);
+    cx.save(); cx.globalCompositeOperation = 'lighter';
+    // light sweep across the cowls
+    const sx = ((time * .22) % 1.8 - .4) * cv.width;
+    const g = cx.createLinearGradient(sx - cv.width * .15, 0, sx + cv.width * .15, cv.height * .3);
+    g.addColorStop(0, 'rgba(46,155,255,0)'); g.addColorStop(.5, `rgba(120,190,255,${.16 * a * lit})`); g.addColorStop(1, 'rgba(46,155,255,0)');
+    cx.fillStyle = g; cx.fillRect(0, 0, cv.width, cv.height);
+    // sparks
+    SPARK.forEach(sp => {
+      const y = (sp.y - time * sp.v) % 1, yy = (y < 0 ? y + 1 : y) * cv.height, xx = (sp.x + Math.sin(time * .7 + sp.ph) * .01) * cv.width;
+      const tw = .5 + .5 * Math.sin(time * 3 + sp.ph), r = sp.r * DPR * 3;
+      const rg = cx.createRadialGradient(xx, yy, 0, xx, yy, r);
+      rg.addColorStop(0, `rgba(170,220,255,${.9 * tw * a * lit})`); rg.addColorStop(1, 'rgba(46,155,255,0)');
+      cx.fillStyle = rg; cx.beginPath(); cx.arc(xx, yy, r, 0, 7); cx.fill();
+    });
+    cx.restore();
+  }
+
   function scene(p, time) {
     cx.fillStyle = '#04070D'; cx.fillRect(0, 0, cv.width, cv.height);
     const fadeIn = (a, b) => sm(a, b, p), fadeOut = (a, b) => 1 - sm(a, b, p);
 
     // 1. underwater: the propeller turning in saltwater (footage)
+    // 1. opening: FlushStar's own rig, black race outboards lit electric blue, camera pulling back
     const a1 = fadeOut(.065, .085);
-    if (a1 > 0) draw(frameOf(pick('prop'), p / .085), a1, 1 + p * 1.2, mob ? .5 : .45, .45);
+    if (a1 > 0) opener(p, a1, time);
 
     // 2. twin outboards running, wake behind (footage)
     const a2 = fadeIn(.065, .085) * fadeOut(.145, .16);
