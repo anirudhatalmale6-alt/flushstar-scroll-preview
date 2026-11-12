@@ -16,8 +16,8 @@ const sm = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 
 const lerp = (a, b, t) => a + (b - a) * t;
 
 // ---- story timing (fractions of the film's scroll length) ----
-const HOSE = [.42, .54];          // hoses draw in from the manifold
-const FLUSH = [.58, .86];         // engines flush one after another
+const HOSE = [.25, .335];          // hoses draw in from the manifold
+const FLUSH = [.36, .56];          // engines flush one after another
 const N_ENG = 4;                  // matches the PORT / ENG 2 / ENG 3 / STBD panel
 const ENG_NAMES = ['Port', 'Eng 2', 'Eng 3', 'Stbd'];
 function engineState(i, p) {
@@ -36,16 +36,17 @@ function overlays(p) {
     if (c.classList.contains('fl-c')) c.style.transform = mobile ? `translateY(${y}px)` : `translate(-50%,${y}px)`;
     else c.style.transform = mobile ? `translateY(${y}px)` : `translateY(calc(-50% + ${y}px))`;
   });
-  const marks = [0, .11, .36, .57, .87, 1];
+  const marks = [0, .07, .215, .35, .585, .735, .875, 1];
   rail.forEach((r, i) => {
     const k = clamp((p - marks[i]) / (marks[i + 1] - marks[i]));
     r.style.setProperty('--k', (k * 100).toFixed(1) + '%');
-    r.classList.toggle('on', p >= marks[i] && p < marks[i + 1] + (i === 4 ? 1 : 0));
+    r.classList.toggle('on', p >= marks[i] && p < marks[i + 1] + (i === rail.length - 1 ? 1 : 0));
   });
   cue.style.opacity = p > .02 ? 0 : 1;
+  rail[0].parentNode.style.opacity = p > .875 ? 0 : 1;
 
   // flush HUD
-  hud.classList.toggle('on', p > FLUSH[0] - .03 && p < FLUSH[1] + .04);
+  hud.classList.toggle('on', p > FLUSH[0] - .03 && p < FLUSH[1] + .02);
   let mode = 'Standby';
   hudEng.forEach((el, i) => {
     const k = engineState(i, p);
@@ -273,13 +274,17 @@ if (!renderer) {
   const V = (x, y, z) => new THREE.Vector3(x, y, z);
   const CAM = [
     [0,   V(.8, 12, 10.5), V(0, -1.6, 8)],     // looking down into the water
-    [.12, V(.6, 4.0, 11.5), V(-1.3, .1, 0)],    // the engines rise into view
-    [.30, V(3.6, 2.0, 5.8), V(-.3, .8, 0)],    // close on the salted cowls
-    [.40, V(-1.2, .5, 3.6), V(-2.9, -.4, -.6)], // the Quantum 25 on the transom
-    [.54, V(-.2, 2.6, 8.4), V(-1.2, -.1, -.4)], // hoses run to every engine
-    [.62, V(3.4, 3.2, 9.2), V(-1.5, -.1, 0)],   // wide, as the cycle starts
-    [.84, V(.6, 2.8, 9.6), V(-2.3, -.35, 0)],   // slow orbit through the cycle
-    [.95, V(0, 2.3, 11.2), V(0, -1.0, 0)]       // finished
+    [.075, V(.6, 4.0, 11.5), V(-1.3, .1, 0)],   // the engines rise into view
+    [.18, V(3.6, 2.0, 5.8), V(-.3, .8, 0)],     // close on the salted cowls
+    [.25, V(-1.2, .5, 3.6), V(-2.9, -.4, -.6)], // the Quantum 25 on the transom
+    [.33, V(-.2, 2.6, 8.4), V(-1.2, -.1, -.4)], // hoses run to every engine
+    [.38, V(3.4, 3.2, 9.2), V(-1.5, -.1, 0)],   // wide, as the cycle starts
+    [.56, V(.6, 2.8, 9.6), V(-2.3, -.35, 0)],   // slow orbit through the cycle
+    [.64, V(5.8, 1.5, 7.6), V(2.3, .3, 0)],     // specs: low angle on the clean engines
+    [.72, V(3.2, 1.0, 8.6), V(2.7, .2, 0)],
+    [.79, V(-5.2, 3.4, 7.9), V(-2.9, -.2, -.5)],// how to buy: over the transom
+    [.86, V(-4.0, 2.6, 7.4), V(-3.4, -.1, -.4)],
+    [.94, V(0, 2.6, 13), V(0, -1.9, 0)]         // contact: the whole rig, high in frame
   ];
   const cp = new THREE.Vector3(), ct = new THREE.Vector3();
   function camAt(p) {
@@ -313,7 +318,7 @@ if (!renderer) {
     const narrow = camera.aspect < .8;
 
     camAt(p);
-    if (narrow) { const nk = sm(.05, .14, p); tmpV.subVectors(cp, ct).multiplyScalar(lerp(1, 1.3, nk)); cp.copy(ct).add(tmpV); ct.y -= .9 * nk; const uk = sm(.32, .4, p) * (1 - sm(.45, .54, p)); cp.x -= 2.6 * uk; cp.z += .6 * uk; ct.x -= 1.1 * uk; ct.y += .5 * uk; }
+    if (narrow) { const nk = sm(.03, .08, p); tmpV.subVectors(cp, ct).multiplyScalar(lerp(1, 1.3, nk)); cp.copy(ct).add(tmpV); ct.y -= .9 * nk; const uk = sm(.2, .25, p) * (1 - sm(.29, .34, p)); cp.x -= 2.6 * uk; cp.z += .6 * uk; ct.x -= 1.1 * uk; ct.y += .5 * uk; }
     camera.position.copy(cp); camera.position.x += Math.sin(T.t.value * .25) * .06; camera.position.y += Math.sin(T.t.value * .4) * .04;
     camera.lookAt(ct);
 

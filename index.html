@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=8">
-<link rel="stylesheet" href="film.css?v=1">
+<link rel="stylesheet" href="film.css?v=3">
 <meta name="robots" content="noindex">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">
@@ -112,46 +112,73 @@
 </header>
 
 <main id="top">
-
-<!-- HERO -->
-<!-- ============ SCROLL FILM (replaces the static hero) ============ -->
-<section class="fl" id="film" aria-label="The Quantum 25 flush cycle, told as you scroll">
+<!-- ============ THE WHOLE HOME PAGE IS ONE SCROLL-DRIVEN FILM ============ -->
+<section class="fl" id="film" aria-label="FlushStar Quantum 25, told as you scroll">
   <div class="fl-stick">
     <canvas id="flCanvas" aria-hidden="true"></canvas>
     <div class="fl-fallback" aria-hidden="true"><img src="img/manifold.jpg" alt=""></div>
     <div class="fl-vig"></div><div class="fl-shade"></div>
 
-    <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".09">
+    <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".055">
       <span class="eyebrow mono">Quantum 25 &nbsp;/&nbsp; Automatic Marine Flushing System</span>
       <h1>Cleaner engines.<br><em>Longer life.</em></h1>
     </div>
-    <div class="fl-ch fl-l" data-a=".13" data-b=".33">
+
+    <div class="fl-ch fl-l" data-a=".08" data-b=".2">
       <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
       <h2>Salt never stops <em>working.</em></h2>
       <p>Saltwater quietly wears down every cooling passage in your outboard. Every run leaves salt, sand and mineral buildup behind.</p>
     </div>
-    <div class="fl-ch fl-r" data-a=".37" data-b=".51">
+
+    <div class="fl-ch fl-r" data-a=".225" data-b=".315">
       <span class="eyebrow mono">02 &nbsp;/&nbsp; The system</span>
       <h2>One manifold. <em>Up to six engines.</em></h2>
       <p>12VDC Plug n Play. Runs off a standard garden hose and feeds every engine from a single supply.</p>
     </div>
-    <div class="fl-ch fl-l" data-a=".59" data-b=".84">
+
+    <div class="fl-ch fl-l" data-a=".37" data-b=".555">
       <span class="eyebrow mono">03 &nbsp;/&nbsp; The cycle</span>
       <h2>One push. <em>Engine stays off.</em></h2>
       <p>Pulsating and continuous water flow clears the full cooling circuit, one engine after another. No hose-holding. No ear muffs. No guesswork.</p>
     </div>
-    <div class="fl-ch fl-c fl-final" data-a=".89" data-b="2">
-      <span class="eyebrow mono">Cycle complete</span>
-      <h2>Every engine. <em>Flushed.</em></h2>
-      <div class="fl-spec">
-        <div><b>1&ndash;6</b><small>Engines flushed</small></div>
-        <div><b>12VDC</b><small>Plug n Play</small></div>
-        <div><b>0 min</b><small>Engine run time</small></div>
-        <div><b>3 yr</b><small>Limited warranty</small></div>
+
+    <div class="fl-ch fl-r fl-wide" data-a=".6" data-b=".72">
+      <span class="eyebrow mono">04 &nbsp;/&nbsp; Specification</span>
+      <h2>The short <em>version.</em></h2>
+      <dl class="fl-specs">
+        <div><dt>Engines supported</dt><dd>1 &ndash; 6</dd></div>
+        <div><dt>Power</dt><dd>12VDC</dd></div>
+        <div><dt>Installation</dt><dd>Plug n Play</dd></div>
+        <div><dt>Water supply</dt><dd>Garden hose</dd></div>
+        <div><dt>Engine must run</dt><dd>No</dd></div>
+        <div><dt>Boat in or out of water</dt><dd>Either</dd></div>
+        <div><dt>Engine makes</dt><dd>Yamaha, Mercury, Suzuki, Honda</dd></div>
+        <div><dt>Fits existing boats</dt><dd>Yes &mdash; retrofit</dd></div>
+        <div><dt>Diagnostics</dt><dd>Runtime + cycle count</dd></div>
+        <div><dt>Limited warranty</dt><dd>3 years</dd></div>
+      </dl>
+    </div>
+
+    <div class="fl-ch fl-l fl-wide" data-a=".75" data-b=".86">
+      <span class="eyebrow mono">05 &nbsp;/&nbsp; How to buy</span>
+      <h2>Two ways to <em>get one.</em></h2>
+      <div class="fl-buy">
+        <a href="https://www.flushstarmarine.com/contact.php"><small class="mono">Direct</small><b>Call us for pricing</b><span>Tell us your engine count and make, and we will price the right configuration for your boat.</span></a>
+        <a href="https://www.flushstarmarine.com/dealer-apply.php"><small class="mono">Through a dealer</small><b>Buy from your marine dealer</b><span>Your marine shop can order FlushStar and fit it while the boat is with them.</span></a>
       </div>
+    </div>
+
+    <div class="fl-ch fl-c fl-final" data-a=".89" data-b="2">
+      <img class="fl-logo" src="img/logo.png" alt="FlushStar Marine Systems">
+      <h2>Every engine. <em>Flushed.</em></h2>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://www.flushstarmarine.com/contact.php">Request a Quote</a>
-        <a class="btn btn-ghost" href="#how">See How It Works</a>
+        <a class="btn btn-ghost" href="tel:+18502502483">Call 850-250-2483</a>
+      </div>
+      <div class="fl-foot mono">
+        <span>3122 Oxmoor Industrial Blvd, Dothan, AL</span>
+        <nav><a href="https://www.flushstarmarine.com/warranty.html">Warranty</a><a href="https://www.flushstarmarine.com/about.html">About</a><a href="https://www.flushstarmarine.com/dealer/login.php">Dealer sign in</a><a href="https://www.facebook.com/61574393173912" target="_blank" rel="noopener">Facebook</a><a href="https://www.flushstarmarine.com/privacy.html">Privacy</a></nav>
+        <span>Made in the U.S.A. &nbsp;&middot;&nbsp; &copy; <span id="flYear">2026</span> FlushStar Marine Systems</span>
       </div>
     </div>
 
@@ -165,660 +192,30 @@
       </div>
     </div>
 
-    <div class="fl-rail" id="flRail" aria-hidden="true"><span>Intro</span><span>Problem</span><span>System</span><span>Cycle</span><span>Done</span></div>
+    <div class="fl-rail" id="flRail" aria-hidden="true"><span>Intro</span><span>Problem</span><span>System</span><span>Cycle</span><span>Specs</span><span>Buy</span><span>Contact</span></div>
     <div class="fl-cue mono" id="flCue"><span>Scroll</span><i></i></div>
   </div>
 </section>
-
-<!-- KINETIC BAND -->
-<section class="kinetic" aria-hidden="true">
-  <div class="kin-row kin-a">
-    <b>Cleaner engines</b><b class="kin-hot">Longer life</b><b>Cleaner engines</b><b class="kin-hot">Longer life</b>
-    <b>Cleaner engines</b><b class="kin-hot">Longer life</b><b>Cleaner engines</b><b class="kin-hot">Longer life</b>
-  </div>
-  <div class="kin-row kin-b" style="border-top:1px solid var(--line);margin-top:-6px">
-    <b class="kin-hot">One button</b><b>Six engines</b><b class="kin-hot">One button</b><b>Six engines</b>
-    <b class="kin-hot">One button</b><b>Six engines</b><b class="kin-hot">One button</b><b>Six engines</b>
-  </div>
-</section>
-
-<!-- PROBLEM -->
-<section class="problem" id="problem">
-  <div class="wrap">
-    <div class="split">
-      <figure class="figure rv" id="corrFig">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="img/unit-corrosion.jpg" alt="A salt-encrusted thermostat housing held beside a FlushStar unit">
-        <button class="hot" style="left:68%;top:17%" data-i="0" aria-expanded="false"
-                aria-label="What salt buildup looks like"><i></i></button>
-        <button class="hot" style="left:60%;top:33%" data-i="1" aria-expanded="false"
-                aria-label="A blocked cooling passage"><i></i></button>
-        <button class="hot" style="left:34%;top:58%" data-i="2" aria-expanded="false"
-                aria-label="The FlushStar manifold"><i></i></button>
-        <div class="hot-note" id="hotNote" style="left:5%;top:6%"></div>
-        <figcaption id="corrCap">Salt from an unflushed passage &nbsp;&middot;&nbsp; tap a marker</figcaption>
-      </figure>
-      <div class="rv">
-        <div class="sec-head" style="margin-bottom:38px">
-          <span class="mono">Why it matters</span>
-          <h2>Protect your engine.<br>Protect your investment.</h2>
-          <p>Saltwater quietly wears down every cooling passage in your outboard.
-             FlushStar checks all the boxes.</p>
-        </div>
-        <div class="pain">
-          <h3><span class="tick">&#10003;</span>Hassle-free</h3>
-          <p>One-touch startup runs the full cycle automatically, so you're not stuck at the dock
-             for an hour babysitting a garden hose.</p>
-        </div>
-        <div class="pain">
-          <h3><span class="tick">&#10003;</span>Eliminates awkward engine access</h3>
-          <p>FlushStar connects to a standard flush port &mdash; no climbing over the transom
-             to reach a factory plug or line up a set of ear muffs.</p>
-        </div>
-        <div class="pain">
-          <h3><span class="tick">&#10003;</span>Takes the guesswork out</h3>
-          <p>Trackable progress. Built-in diagnostics log total runtime and completed flush
-             cycles, so you know the job got done right. Every time.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW -->
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="mono">Operation</span>
-      <h2>Two steps. Then walk away.</h2>
-      <p>The boat can be in the water or on the trailer. The engine never has to run &mdash;
-         which means no noise, no emissions and no fuel burned to protect your motors.</p>
-    </div>
-    <div class="steps stagger rv">
-      <div class="step">
-        <span class="num">01</span>
-        <h3>Connect freshwater</h3>
-        <p>Hook a standard garden hose to the FlushStar inlet. The system is already plumbed to
-           each engine's flush port, so there is nothing to align and nothing to guess at.</p>
-      </div>
-      <div class="step">
-        <span class="num">02</span>
-        <h3>Press start</h3>
-        <p>One button. A controlled pressure build and release flushing sequence runs through
-           every motor in the bank &mdash; one through six.</p>
-      </div>
-      <div class="step">
-        <span class="num">03</span>
-        <h3>Walk away</h3>
-        <p>The cycle runs unattended and shuts itself down. Diagnostics log the runtime and the
-           completed cycle count so you have a record, not a hope.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="wrap">
-    <div class="stat-grid stagger rv">
-      <div class="stat"><b data-count="3" data-suffix="">0</b><small>Year limited warranty</small></div>
-      <div class="stat"><b data-count="6" data-suffix="">0</b><small>Engines on one cycle</small></div>
-      <div class="stat"><b data-count="1" data-suffix="">0</b><small>Button to start it</small></div>
-      <div class="stat"><b data-count="0" data-suffix="">0</b><small>Emissions or fuel burned</small></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONFIGURATOR -->
-<section class="config" id="system">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="mono">Configure</span>
-      <h2>Built around your engine bank.</h2>
-      <p>Single outboard or a bank of six, the Quantum 25 flushes them all from one manifold on one
-         cycle. Pick your setup below to see how the system is laid out.</p>
-    </div>
-
-    <div class="panel rv">
-      <div class="panel-top">
-        <span class="led"></span>
-        <span class="mono">FlushStar Quantum 25 &nbsp;&middot;&nbsp; System Layout</span>
-        <span class="mono right" id="statusText">Ready</span>
-      </div>
-      <div class="panel-body">
-        <div class="panel-ctrl">
-          <h3>How many engines?</h3>
-          <p>Select an engine count to configure the manifold.</p>
-          <div class="dial" id="dial" role="group" aria-label="Engine count"></div>
-          <button class="btn btn-primary" id="runBtn" style="width:100%;justify-content:center;margin-bottom:22px">
-            Run Flush Cycle
-          </button>
-          <dl class="readout">
-            <div><dt>Engines</dt><dd id="rEng">4</dd></div>
-            <div><dt>Manifold ports</dt><dd id="rPorts">4 active</dd></div>
-            <div><dt>Water source</dt><dd class="yes">Garden hose</dd></div>
-            <div><dt>Engine operation</dt><dd class="yes">Not required</dd></div>
-            <div><dt>Cycle status</dt><dd id="rStatus">Standby</dd></div>
-          </dl>
-        </div>
-        <div class="panel-vis">
-          <svg viewBox="0 0 460 320" role="img" aria-label="Diagram of the FlushStar manifold feeding each engine">
-            <defs>
-              <linearGradient id="flowgrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#2E9BFF"/><stop offset="100%" stop-color="#6FCBFF"/>
-              </linearGradient>
-            </defs>
-            <!-- inlet -->
-            <path class="hose on" d="M16 184 L46 184"/>
-            <text class="port-label" x="10" y="174">INLET</text>
-            <!-- controller body -->
-            <rect x="46" y="66" width="96" height="188" rx="5" fill="#0A1120" stroke="rgba(126,166,222,.3)"/>
-            <rect x="56" y="76" width="76" height="30" rx="3" fill="none" stroke="rgba(46,155,255,.5)"/>
-            <text class="port-label on" x="64" y="96">FLUSHSTAR</text>
-            <g id="ports"></g>
-            <g id="hoses"></g>
-            <g id="engines"></g>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section>
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="mono">The unit</span>
-      <h2>Flush your motors, not your time.</h2>
-    </div>
-    <div class="feat-grid stagger rv">
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M12 2v6M12 22a8 8 0 0 0 8-8 8 8 0 0 0-3-6.2M7 7.8A8 8 0 0 0 4 14a8 8 0 0 0 8 8"/></svg>
-        <h3>One-touch startup</h3><p>Press once. The full cycle runs start to finish without you.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 4-6 5 8M3 21h18"/></svg>
-        <h3>Built-in diagnostics</h3><p>Tracks total runtime and completed flush cycles on board.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 4.4-3.4 7.4-8 8-4.6-.6-8-3.6-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg>
-        <h3>Controlled pressure cycle</h3><p>A build and release sequence that works the salt out of every passage.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M12 21c-3.9 0-7-3-7-6.7C5 10 12 3 12 3s7 7 7 11.3C19 18 15.9 21 12 21z"/></svg>
-        <h3>No engine operation</h3><p>No running motor. No noise, no emissions, no fuel burned.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
-        <h3>1 to 6 engines</h3><p>One manifold, one cycle, however many motors you run.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M2 16c2 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2M2 21c2 0 3-2 5-2s3 2 5 2 3-2 5-2 3 2 5 2M6 11V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5"/></svg>
-        <h3>In or out of the water</h3><p>Works on the trailer, in the slip, on the lift.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
-        <h3>12VDC Plug n Play</h3><p>Runs off boat power. No extra programming to set up.</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/></svg>
-        <h3>Made in America</h3><p>Designed, machined and assembled in the U.S.A.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WARRANTY BAND -->
-<section class="band">
-  <div class="band-img"><img src="img/outboards.jpg" alt="A triple outboard installation on the water"></div>
-  <div class="wrap">
-    <div class="band-in rv">
-      <span class="mono" style="color:var(--brass);display:block;margin-bottom:16px">Performance</span>
-      <h2>Six minutes does the work of twenty.</h2>
-      <p>Six minutes of flushing with FlushStar is equivalent to twenty minutes of running your
-         engine in fresh water &mdash; without running the engine at all. A controlled pressure
-         build and release sequence moves salt out of passages that idling never reaches.</p>
-      <a class="btn btn-primary" href="https://www.flushstarmarine.com/contact.php">Request a Quote</a>
-    </div>
-  </div>
-</section>
-
-<!-- SPECS -->
-<section id="specs">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="mono">Specification</span>
-      <h2>The short version.</h2>
-    </div>
-    <div class="specs rv">
-      <dl>
-        <div class="spec-row"><dt>Engines supported</dt><dd>1 &ndash; 6</dd></div>
-        <div class="spec-row"><dt>Power</dt><dd>12VDC</dd></div>
-        <div class="spec-row"><dt>Installation</dt><dd>Plug n Play</dd></div>
-        <div class="spec-row"><dt>Programming required</dt><dd class="yes">None</dd></div>
-        <div class="spec-row"><dt>Water supply</dt><dd>Standard garden hose</dd></div>
-        <div class="spec-row"><dt>Engine must run</dt><dd class="yes">No</dd></div>
-      </dl>
-      <dl>
-        <div class="spec-row"><dt>Boat in or out of water</dt><dd class="yes">Either</dd></div>
-        <div class="spec-row"><dt>Engine makes</dt><dd>Yamaha, Mercury, Suzuki, Honda</dd></div>
-        <div class="spec-row"><dt>Fits existing boats</dt><dd class="yes">Yes &mdash; retrofit</dd></div>
-        <div class="spec-row"><dt>Diagnostics</dt><dd>Runtime + cycle count</dd></div>
-        <div class="spec-row"><dt>Emissions / noise</dt><dd class="yes">None</dd></div>
-        <div class="spec-row"><dt>Country of manufacture</dt><dd>U.S.A.</dd></div>
-        <div class="spec-row"><dt>Limited warranty</dt><dd>3 years</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST -->
-<!-- HOW TO BUY -->
-<section id="buy">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="mono">How to buy</span>
-      <h2>Two ways to get one.</h2>
-      <p>Pricing depends on how many engines you run and which adapters you need,
-         so we quote it properly rather than guessing on a web page.</p>
-    </div>
-
-    <div class="trust stagger rv">
-      <div class="tcard">
-        <span class="mono">Direct</span>
-        <h3>Call us for pricing</h3>
-        <p>Tell us your engine count and make, and we will price the right
-           configuration for your boat.<br><br>
-           <a href="tel:8502502483" style="color:var(--volt-hot);font-size:20px"><b>850-250-2483</b></a><br>
-           <a href="https://www.flushstarmarine.com/contact.php">Or send us the details</a></p>
-      </div>
-      <div class="tcard">
-        <span class="mono">Through a dealer</span>
-        <h3>Buy from your marine dealer</h3>
-        <p>Already dealing with a marine shop? They can order FlushStar for you
-           and fit it while the boat is with them.<br><br>
-           <a href="https://www.flushstarmarine.com/dealer-apply.php">Dealers can apply for a trade account here</a>.</p>
-      </div>
-      <div class="tcard">
-        <span class="mono">Retrofit</span>
-        <h3>It goes on the boat you already own</h3>
-        <p>This is not just for new builds. The Quantum 25 fits existing
-           boats &mdash; one 12&nbsp;volt feed, a garden hose connection, and a
-           line to each engine's flush port. Nothing about the engine changes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="how" id="contact">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="mono">Why FlushStar</span>
-      <h2>Real support. A straight guarantee.</h2>
-      <p>Equipment built to handle saltwater, backed by people who pick up the phone.</p>
-    </div>
-    <div class="trust stagger rv">
-      <div class="tcard">
-        <span class="mono">Customer support</span>
-        <h3>Real people, real help</h3>
-        <p>Call <a href="tel:8502502483">850-250-2483</a> and we'll get back to you fast.
-           No ticket queue, no phone tree.</p>
-      </div>
-      <div class="tcard">
-        <span class="mono">30-day guarantee</span>
-        <h3>Performance, promised</h3>
-        <p>Try FlushStar with confidence. If it doesn't perform as promised, we'll make it right
-           within 30 days.</p>
-      </div>
-      <div class="tcard">
-        <span class="mono">3-year warranty</span>
-        <h3>Built for saltwater</h3>
-        <p>Engineered to stand up to saltwater exposure and reduce corrosion-related engine
-           damage. Covered for three years.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <div class="wrap">
-    <div class="rv">
-      <h2>The smarter way to flush is here.</h2>
-      <p>Tell us how many engines you run and we'll spec the right system for your boat.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="tel:8502502483">Call 850-250-2483</a>
-        <a class="btn btn-ghost" href="#top">Request a Quote</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="f-grid">
-      <div>
-        <img class="flogo" src="img/logo.png" alt="FlushStar Marine Systems">
-        <p>Automatic marine flushing systems, engineered and built in the United States.</p>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>3122 Oxmoor Industrial Blvd<br>Dothan, AL 36305<br>United States</p>
-        <p style="margin-top:12px"><a href="tel:8502502483" style="color:var(--volt-hot)">850-250-2483</a></p>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <ul class="social">
-          <li>
-            <a href="https://www.facebook.com/61574393173912" rel="noopener" target="_blank"
-               aria-label="FlushStar Marine Systems on Facebook">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-                <path fill="currentColor" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/>
-              </svg>
-              <span>Facebook</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="https://www.flushstarmarine.com/about.html">About</a></li>
-          <li><a href="#specs">Specifications</a></li>
-          <li><a href="https://www.flushstarmarine.com/contact.php">Contact</a></li>
-          <li><a href="https://www.flushstarmarine.com/warranty.html">Warranty</a></li>
-          <li><a href="https://www.flushstarmarine.com/privacy.html">Privacy Policy</a></li>
-          <li><a href="https://www.flushstarmarine.com/dealer-apply.php">Become a Dealer</a></li>
-          <li><a href="https://www.flushstarmarine.com/dealer/login.php">Dealer Sign In</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="f-bot">
-      <span>&copy; 2026 FlushStar Marine Systems</span>
-      <span>Made in the U.S.A.</span>
-    </div>
-  </div>
-</footer>
-
 <script>
-/* ---- mobile nav ---- */
+/* mobile nav */
 var burger=document.getElementById('burger'),nl=document.getElementById('navlinks');
-burger.addEventListener('click',function(){
-  var open=nl.classList.toggle('open');
-  burger.setAttribute('aria-expanded',open?'true':'false');
+burger.addEventListener('click',function(){var o=nl.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false');});
+/* the page is one film: menu anchors jump to their moment in it */
+var MOMENTS={top:0,problem:.14,system:.27,how:.46,specs:.66,buy:.8};
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]'); if(!a)return;
+  var k=a.getAttribute('href').slice(1); if(!(k in MOMENTS))return;
+  e.preventDefault(); nl.classList.remove('open');
+  var f=document.getElementById('film'), top=f.getBoundingClientRect().top+scrollY;
+  scrollTo({top:top+(f.offsetHeight-innerHeight)*MOMENTS[k],behavior:'smooth'});
 });
-nl.addEventListener('click',function(e){if(e.target.tagName==='A')nl.classList.remove('open');});
-
-/* ---- scroll reveal ---- */
-var io=new IntersectionObserver(function(es){
-  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.rv, .sec-head').forEach(function(el){io.observe(el);});
-
-var REDUCED=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---- scroll progress ---- */
-var prog=document.getElementById('progress'), ticking=false;
-function onScroll(){
-  var st=window.pageYOffset||document.documentElement.scrollTop;
-  var max=document.documentElement.scrollHeight-window.innerHeight;
-  prog.style.width=(max>0?(st/max)*100:0)+'%';
-  ticking=false;
-}
-window.addEventListener('scroll',function(){
-  if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
-},{passive:true});
-onScroll();
-
-/* ---- headline word-by-word reveal ---- */
-(function(){
-  var h=document.getElementById('h1'); if(!h||REDUCED)return;
-  var i=0;
-  function wrap(node){
-    var out=[];
-    [].slice.call(node.childNodes).forEach(function(n){
-      if(n.nodeType===3){
-        var frag=document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(function(t){
-          if(!t.trim()){frag.appendChild(document.createTextNode(t));return;}
-          var s=document.createElement('span');
-          s.className='w'; s.textContent=t;
-          s.style.animationDelay=(0.12+i*0.055).toFixed(3)+'s'; i++;
-          frag.appendChild(s);
-        });
-        out.push([n,frag]);
-      } else if(n.nodeType===1 && n.tagName!=='BR'){ wrap(n); }
-    });
-    out.forEach(function(pair){node.replaceChild(pair[1],pair[0]);});
-  }
-  wrap(h);
-})();
-
-/* ---- count-up stats ---- */
-var cio=new IntersectionObserver(function(es){
-  es.forEach(function(e){
-    if(!e.isIntersecting)return;
-    cio.unobserve(e.target);
-    var b=e.target, target=parseInt(b.dataset.count,10), t0=null, DUR=1250;
-    if(REDUCED||target===0){b.textContent=target;return;}
-    function step(ts){
-      if(!t0)t0=ts;
-      var p=Math.min((ts-t0)/DUR,1);
-      var eased=1-Math.pow(1-p,3);
-      b.textContent=Math.round(target*eased);
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  });
-},{threshold:.6});
-document.querySelectorAll('.stat b[data-count]').forEach(function(b){cio.observe(b);});
-
-/* ---- corrosion hotspots ---- */
-(function(){
-  var NOTES=[
-    ['Salt buildup','This is what comes out of a cooling passage that never gets flushed. Every trip in salt water adds another layer.'],
-    ['A blocked passage','Once the mineral crust closes the passage, coolant stops moving and the powerhead starts running hot.'],
-    ['The fix','The Quantum 25 pushes fresh water through that entire circuit on one push-button cycle, before any of it can set.']
-  ];
-  var note=document.getElementById('hotNote');
-  var hots=[].slice.call(document.querySelectorAll('#corrFig .hot'));
-  if(!note||!hots.length)return;
-  var openIdx=-1;
-  function close(){
-    openIdx=-1; note.classList.remove('show');
-    hots.forEach(function(h){h.setAttribute('aria-expanded','false');});
-  }
-  hots.forEach(function(h){
-    h.addEventListener('click',function(ev){
-      ev.stopPropagation();
-      var i=+h.dataset.i;
-      if(openIdx===i){close();return;}
-      close(); openIdx=i;
-      note.innerHTML='<b>'+NOTES[i][0]+'</b>'+NOTES[i][1];
-      note.classList.add('show');
-      h.setAttribute('aria-expanded','true');
-    });
-  });
-  document.addEventListener('click',function(){if(openIdx>-1)close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-})();
-
-/* ---- feature card cursor glow ---- */
-document.querySelectorAll('.feat').forEach(function(f){
-  f.addEventListener('mousemove',function(e){
-    var r=f.getBoundingClientRect();
-    f.style.setProperty('--mx',(e.clientX-r.left)+'px');
-    f.style.setProperty('--my',(e.clientY-r.top)+'px');
-  });
-});
-
-/* Scrollspy: light up the menu item for whichever section is on screen.
-   Uses IntersectionObserver rather than a scroll handler so it costs nothing
-   while the page is idle. */
-(function(){
-  var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"], .nav-links a[href*="index.html#"]'));
-  if(!links.length) return;
-  var byId = {};
-  links.forEach(function(a){
-    var id = a.getAttribute('href').split('#')[1];
-    if(id) byId[id] = a;
-  });
-  var sections = Object.keys(byId)
-    .map(function(id){ return document.getElementById(id); })
-    .filter(Boolean);
-  if(!sections.length) return;
-
-  function clear(){ links.forEach(function(a){ a.classList.remove('on'); }); }
-
-  var seen = {};
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
-    // whichever visible section covers most of the viewport wins
-    var best = null, bestRatio = 0;
-    Object.keys(seen).forEach(function(id){
-      if(seen[id] > bestRatio){ bestRatio = seen[id]; best = id; }
-    });
-    clear();
-    if(best && byId[best]) byId[best].classList.add('on');
-  }, { threshold:[0,.15,.35,.6,.85], rootMargin:'-70px 0px -35% 0px' });
-
-  sections.forEach(function(sec){ obs.observe(sec); });
-})();
-
-/* Any counter carrying data-since works its own value out from the current
-   year, so "38 years" rolls over to 39 in January without anyone editing a file. */
-[].forEach.call(document.querySelectorAll('[data-since]'),function(el){
-  var since=+el.getAttribute('data-since');
-  if(since) el.setAttribute('data-count', String(new Date().getFullYear()-since));
-});
-
-/* ---- engine configurator ----
-   The Quantum 25 works through the engine bank one at a time, so the diagram
-   does too: the engine being flushed animates, the ones already done stay lit,
-   the rest wait their turn. Flushing everything at once was wrong. */
-var MAX=6, count=4, running=false, activeIdx=-1, doneCount=0;
-var SECS_PER_ENGINE=2;
-var portsG=document.getElementById('ports'),
-    hosesG=document.getElementById('hoses'),
-    engG=document.getElementById('engines'),
-    dial=document.getElementById('dial'),
-    NS='http://www.w3.org/2000/svg';
-
-function el(tag,attrs){var n=document.createElementNS(NS,tag);
-  for(var k in attrs)n.setAttribute(k,attrs[k]);return n;}
-
-function buildDiagram(){
-  portsG.textContent='';hosesG.textContent='';engG.textContent='';
-  var top=122, gap=(246-122)/(MAX-1);
-  for(var i=0;i<MAX;i++){
-    var y=top+i*gap, on=i<count;
-    // manifold port
-    var p=el('rect',{x:132,y:y-7,width:16,height:14,rx:2,
-      'class':'port-body'+(on?' on':'')});
-    portsG.appendChild(p);
-    var lb=el('text',{x:56,y:y+4,'class':'port-label'+(on?' on':'')});
-    lb.textContent='ENG '+(i+1);
-    portsG.appendChild(lb);
-    // hose — three states while running: flushing now, already done, waiting
-    var ey=44+i*44+16;
-    var state='';
-    if(on&&running){ state = (i===activeIdx) ? ' on' : (i<activeIdx ? ' done' : ' queued'); }
-    var h=el('path',{d:'M148 '+y+' C 210 '+y+', 250 '+ey+', 312 '+ey,
-      'class':'hose'+state});
-    if(on&&!running)h.setAttribute('stroke','rgba(46,155,255,.45)');
-    hosesG.appendChild(h);
-    // engine block
-    var estate = on ? ' on' : '';
-    if(on&&running&&i===activeIdx) estate += ' active';
-    if(on&&running&&i<activeIdx)  estate += ' done';
-    var g=el('rect',{x:312,y:ey-15,width:126,height:30,rx:4,'class':'eng'+estate});
-    engG.appendChild(g);
-    var t=el('text',{x:322,y:ey+4,'class':'port-label'+(on?' on':'')});
-    t.textContent='OUTBOARD '+(i+1);
-    engG.appendChild(t);
-  }
-}
-
-function buildDial(){
-  for(var i=1;i<=MAX;i++){
-    (function(n){
-      var b=document.createElement('button');
-      b.textContent=n;b.dataset.n=n;
-      b.setAttribute('aria-pressed',n===count?'true':'false');
-      b.setAttribute('aria-label',n+' engine'+(n>1?'s':''));
-      b.addEventListener('click',function(){setCount(n);});
-      dial.appendChild(b);
-    })(i);
-  }
-}
-
-function setCount(n){
-  count=n;running=false;activeIdx=-1;doneCount=0;clearInterval(timer);
-  [].forEach.call(dial.children,function(b){
-    b.setAttribute('aria-pressed',(+b.dataset.n===n)?'true':'false');});
-  document.getElementById('rEng').textContent=n;
-  document.getElementById('rPorts').textContent=n+' active';
-  document.getElementById('rStatus').textContent='Standby';
-  document.getElementById('statusText').textContent='Ready';
-  document.getElementById('runBtn').textContent='Run Flush Cycle';
-  buildDiagram();
-}
-
-var timer=null;
-document.getElementById('runBtn').addEventListener('click',function(){
-  if(running){return;}
-  running=true;activeIdx=0;doneCount=0;
-  var btn=this,secs=0;
-  btn.textContent='Cycle running…';
-  document.getElementById('statusText').textContent='Flushing';
-  buildDiagram();
-  document.getElementById('rStatus').textContent='Engine 1 of '+count;
-  clearInterval(timer);
-  timer=setInterval(function(){
-    secs++;
-    // move on to the next engine once this one has had its turn
-    var shouldBeOn=Math.floor(secs/SECS_PER_ENGINE);
-    if(shouldBeOn>activeIdx){
-      activeIdx=shouldBeOn;
-      if(activeIdx>=count){
-        clearInterval(timer);
-        running=false;activeIdx=-1;buildDiagram();
-        document.getElementById('rStatus').textContent='Cycle complete';
-        document.getElementById('statusText').textContent='Complete';
-        btn.textContent='Run Flush Cycle';
-        return;
-      }
-      buildDiagram();
-    }
-    document.getElementById('rStatus').textContent=
-      'Engine '+(activeIdx+1)+' of '+count+'  ·  '+
-      String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
-  },1000);
-});
-
-buildDial();buildDiagram();
-
-/* auto-demo the cycle the first time the panel scrolls into view */
-(function(){
-  var panel=document.querySelector('#system .panel');
-  if(!panel||REDUCED)return;
-  var once=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(!e.isIntersecting)return;
-      once.unobserve(e.target);
-      setTimeout(function(){
-        if(!running)document.getElementById('runBtn').click();
-      },700);
-    });
-  },{threshold:.45});
-  once.observe(panel);
-})();
+/* scroll progress */
+var prog=document.getElementById('progress');
+addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
+document.getElementById('flYear').textContent=new Date().getFullYear();
 </script>
-
-<!-- Visit counter. Fails silently and never blocks the page. -->
-<script type="module" src="film.js?v=1"></script>
+<script type="module" src="film.js?v=3"></script>
 </body>
 </html>
