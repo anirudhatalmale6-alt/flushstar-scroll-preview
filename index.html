@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=8">
-<link rel="stylesheet" href="film.css?v=5">
+<link rel="stylesheet" href="film.css?v=7">
 <meta name="robots" content="noindex">
 <script type="application/ld+json">
 {
@@ -77,38 +77,7 @@
 
 </head>
 <body>
-<div class="progress" id="progress"></div>
 <div class="grid-bg"></div><div class="noise"></div>
-
-<div class="ticker">
-  <div class="ticker-in">
-    <span>Made in the U.S.A.</span><span>Engineering saltwater flush systems</span>
-    <span>3-year limited warranty</span><span>Flushes 1 to 6 engines</span>
-    <span>12VDC Plug n Play</span><span>No engine operation required</span>
-    <span>Made in the U.S.A.</span><span>Engineering saltwater flush systems</span>
-    <span>3-year limited warranty</span><span>Flushes 1 to 6 engines</span>
-    <span>12VDC Plug n Play</span><span>No engine operation required</span>
-  </div>
-</div>
-
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="#top"><img src="img/logo.png" alt="FlushStar Marine Systems"></a>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="nav-links" id="navlinks">
-      <a href="#problem">The Problem</a>
-      <a href="#how">How It Works</a>
-      <a href="#system">The System</a>
-      <a href="#specs">Specs</a>
-      <a href="#buy">How to Buy</a>
-      <a href="https://www.flushstarmarine.com/warranty.html">Warranty</a>
-      <a href="https://www.flushstarmarine.com/about.html">About</a>
-      <a href="https://www.flushstarmarine.com/contact.php">Contact</a>
-      <a href="https://www.flushstarmarine.com/dealer-apply.php">Dealers</a>
-    </nav>
-    <a class="btn btn-primary" href="https://www.flushstarmarine.com/contact.php">Request a Quote</a>
-  </div>
-</header>
 
 <main id="top">
 <!-- ============ THE WHOLE HOME PAGE IS ONE SCROLL-DRIVEN FILM ============ -->
@@ -119,6 +88,7 @@
     <div class="fl-vig"></div><div class="fl-shade"></div>
 
     <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".06">
+      <img class="fl-logo fl-logo-intro" src="img/logo.png" alt="FlushStar Marine Systems">
       <span class="eyebrow mono">Quantum 25 &nbsp;/&nbsp; Automatic Marine Flushing System</span>
       <h1>Cleaner engines.<br><em>Longer life.</em></h1>
     </div>
@@ -207,24 +177,7 @@
 </section>
 </main>
 
-<script>
-/* mobile nav */
-var burger=document.getElementById('burger'),nl=document.getElementById('navlinks');
-burger.addEventListener('click',function(){var o=nl.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false');});
-/* the page is one film: menu anchors jump to their moment in it */
-var MOMENTS={top:0,problem:.2,system:.43,how:.56,specs:.76,buy:.85};
-document.addEventListener('click',function(e){
-  var a=e.target.closest('a[href^="#"]'); if(!a)return;
-  var k=a.getAttribute('href').slice(1); if(!(k in MOMENTS))return;
-  e.preventDefault(); nl.classList.remove('open');
-  var f=document.getElementById('film'), top=f.getBoundingClientRect().top+scrollY;
-  scrollTo({top:top+(f.offsetHeight-innerHeight)*MOMENTS[k],behavior:'smooth'});
-});
-/* scroll progress */
-var prog=document.getElementById('progress');
-addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
-document.getElementById('flYear').textContent=new Date().getFullYear();
-</script>
-<script src="film3.js?v=1"></script>
+<script>document.getElementById('flYear').textContent=new Date().getFullYear();</script>
+<script src="film3.js?v=2"></script>
 </body>
 </html>

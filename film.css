@@ -1,5 +1,5 @@
 /* ---------- scroll film ---------- */
-.fl{position:relative;height:1300vh;z-index:2}
+.fl{position:relative;height:1300vh;z-index:2;padding:0!important;margin:0}
 .fl-stick{position:sticky;top:0;height:100vh;height:100lvh;overflow:hidden;background:var(--abyss)}
 #flCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .fl-fallback{display:none;position:absolute;inset:0}
@@ -20,7 +20,9 @@
 .fl-l{left:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
 .fl-r{right:max(26px,calc((100vw - var(--maxw))/2 + 26px))}
 .fl-c{left:50%;width:min(860px,92vw);text-align:center}
-.fl-intro{top:15vh}
+.fl-intro{top:11vh}
+.fl-logo-intro{width:min(260px,56vw);margin-bottom:22px;filter:drop-shadow(0 2px 14px rgba(0,0,0,.75)) drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.fl-intro::before{content:"";position:absolute;inset:-60px -120px;background:radial-gradient(closest-side,rgba(2,4,9,.55),rgba(2,4,9,.25) 60%,transparent);z-index:-1;pointer-events:none}
 .fl-final{top:auto;bottom:7vh}
 .fl-ch .eyebrow{margin-bottom:18px}
 .fl-c .eyebrow{justify-content:center}
@@ -73,7 +75,7 @@
   .fl-ch p{font-size:16px;margin-top:12px}
   .fl-spec{margin:16px auto 18px}.fl-spec div{flex:1 1 50%;padding:9px 6px}.fl-spec div:nth-child(2){border-right:0}.fl-spec div:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .fl-spec b{font-size:24px}
-  .fl-hud{left:18px;right:18px;width:auto;top:96px;bottom:auto;padding:10px 12px}
+  .fl-hud{left:18px;right:18px;width:auto;top:18px;bottom:auto;padding:10px 12px}
   .fl-eng div{padding:7px 2px}
   .fl-rail{display:none}
 }
