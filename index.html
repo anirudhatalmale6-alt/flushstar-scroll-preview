@@ -34,9 +34,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=8">
-<link rel="stylesheet" href="film.css?v=4">
+<link rel="stylesheet" href="film.css?v=5">
 <meta name="robots" content="noindex">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,33 +115,43 @@
 <section class="fl" id="film" aria-label="FlushStar Quantum 25, told as you scroll">
   <div class="fl-stick">
     <canvas id="flCanvas" aria-hidden="true"></canvas>
-    <div class="fl-fallback" aria-hidden="true"><img src="img/manifold.jpg" alt=""></div>
+    <div class="fl-load mono" id="flLoad"><span>Loading</span><i><b id="flLoadBar"></b></i></div>
     <div class="fl-vig"></div><div class="fl-shade"></div>
 
-    <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".055">
+    <div class="fl-ch fl-c fl-intro" data-a="-1" data-b=".06">
       <span class="eyebrow mono">Quantum 25 &nbsp;/&nbsp; Automatic Marine Flushing System</span>
       <h1>Cleaner engines.<br><em>Longer life.</em></h1>
     </div>
 
-    <div class="fl-ch fl-l" data-a=".08" data-b=".2">
+    <div class="fl-ch fl-l" data-a=".085" data-b=".165">
+      <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
+      <h2>Every run pulls <em>saltwater</em> through.</h2>
+      <p>Your outboard cools itself with the water it runs in, straight through every passage inside the engine.</p>
+    </div>
+    <div class="fl-ch fl-l" data-a=".185" data-b=".29">
       <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
       <h2>Salt never stops <em>working.</em></h2>
       <p>Saltwater quietly wears down every cooling passage in your outboard. Every run leaves salt, sand and mineral buildup behind.</p>
     </div>
+    <div class="fl-ch fl-l" data-a=".315" data-b=".38">
+      <span class="eyebrow mono">01 &nbsp;/&nbsp; The problem</span>
+      <h2>This is what it <em>leaves behind.</em></h2>
+      <p>Salt from an unflushed passage. Left alone, it blocks the cooling circuit and eats the metal around it.</p>
+    </div>
 
-    <div class="fl-ch fl-r" data-a=".225" data-b=".315">
+    <div class="fl-ch fl-l" data-a=".395" data-b=".465">
       <span class="eyebrow mono">02 &nbsp;/&nbsp; The system</span>
       <h2>One manifold. <em>Up to six engines.</em></h2>
       <p>12VDC Plug n Play. Runs off a standard garden hose and feeds every engine from a single supply.</p>
     </div>
 
-    <div class="fl-ch fl-l" data-a=".37" data-b=".555">
+    <div class="fl-ch fl-r" data-a=".49" data-b=".69">
       <span class="eyebrow mono">03 &nbsp;/&nbsp; The cycle</span>
       <h2>One push. <em>Engine stays off.</em></h2>
       <p>Pulsating and continuous water flow clears the full cooling circuit, one engine after another. No hose-holding. No ear muffs. No guesswork.</p>
     </div>
 
-    <div class="fl-ch fl-r fl-wide" data-a=".6" data-b=".72">
+    <div class="fl-ch fl-r fl-wide" data-a=".715" data-b=".8">
       <span class="eyebrow mono">04 &nbsp;/&nbsp; Specification</span>
       <h2>The short <em>version.</em></h2>
       <dl class="fl-specs">
@@ -159,7 +168,7 @@
       </dl>
     </div>
 
-    <div class="fl-ch fl-l fl-wide" data-a=".75" data-b=".86">
+    <div class="fl-ch fl-l fl-wide" data-a=".82" data-b=".885">
       <span class="eyebrow mono">05 &nbsp;/&nbsp; How to buy</span>
       <h2>Two ways to <em>get one.</em></h2>
       <div class="fl-buy">
@@ -168,7 +177,7 @@
       </div>
     </div>
 
-    <div class="fl-ch fl-c fl-final" data-a=".89" data-b="2">
+    <div class="fl-ch fl-c fl-final" data-a=".905" data-b="2">
       <img class="fl-logo" src="img/logo.png" alt="FlushStar Marine Systems">
       <h2>Every engine. <em>Flushed.</em></h2>
       <div class="hero-cta">
@@ -203,7 +212,7 @@
 var burger=document.getElementById('burger'),nl=document.getElementById('navlinks');
 burger.addEventListener('click',function(){var o=nl.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false');});
 /* the page is one film: menu anchors jump to their moment in it */
-var MOMENTS={top:0,problem:.14,system:.27,how:.46,specs:.66,buy:.8};
+var MOMENTS={top:0,problem:.2,system:.43,how:.56,specs:.76,buy:.85};
 document.addEventListener('click',function(e){
   var a=e.target.closest('a[href^="#"]'); if(!a)return;
   var k=a.getAttribute('href').slice(1); if(!(k in MOMENTS))return;
@@ -216,6 +225,6 @@ var prog=document.getElementById('progress');
 addEventListener('scroll',function(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
 document.getElementById('flYear').textContent=new Date().getFullYear();
 </script>
-<script type="module" src="film.js?v=4"></script>
+<script src="film3.js?v=1"></script>
 </body>
 </html>
