@@ -6,6 +6,7 @@
   const stick = film.querySelector('.fl-stick');
   const cv = document.getElementById('flCanvas');
   const cx = cv.getContext('2d');
+  cx.imageSmoothingQuality = 'high';
   const chaps = [...film.querySelectorAll('.fl-ch')];
   const rail = [...document.querySelectorAll('#flRail span')];
   const hud = document.getElementById('flHud'), hudMode = document.getElementById('flMode'), hudClock = document.getElementById('flClock');
@@ -67,6 +68,7 @@
     DPR = Math.min(devicePixelRatio || 1, 2);
     W = stick.clientWidth; H = stick.clientHeight;
     cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    cx.imageSmoothingQuality = 'high';
     const m = portrait(); if (m !== mob) { mob = m; }
   }
   addEventListener('resize', resize); resize();
@@ -155,8 +157,8 @@
   let featherImg = null;
   function feathered() {
     const img = PHOTO.product; if (featherImg || !img.naturalWidth) return featherImg;
-    const w = img.naturalWidth, h = img.naturalHeight, c = document.createElement('canvas'); c.width = w; c.height = h;
-    const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+    const w = Math.min(1600, img.naturalWidth), h = Math.round(img.naturalHeight * w / img.naturalWidth), c = document.createElement('canvas'); c.width = w; c.height = h;
+    const g = c.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0, w, h);
     const d = g.getImageData(0, 0, w, h), px = d.data, fw = w * .07, fh = h * .1;
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
       const e = Math.min(x / fw, (w - 1 - x) / fw, y / fh, (h - 1 - y) / fh, 1);
@@ -216,7 +218,7 @@
   function opener(p, a, time) {
     const k = sm(0, .075, p);
     const lit = sm(0, 1.4, time);                       // lights come up when the page opens
-    const P = draw(PHOTO.manifold, a * lit, lerp(mob ? 2.4 : 2.0, mob ? 1.25 : 1.06, k), lerp(mob ? .8 : .78, .5, k), lerp(mob ? .58 : .34, .5, k),
+    const P = draw(PHOTO.manifold, a * lit, lerp(mob ? 1.9 : 2.0, mob ? 1.15 : 1.06, k), lerp(mob ? .8 : .78, .5, k), lerp(mob ? .58 : .34, .5, k),
       `brightness(${lerp(.9, 1.05, k)}) saturate(1.45) contrast(1.15)`);
     flows(P, a * lit * (.8 + .2 * Math.sin(time * 2.2)), false, time);
     cx.save(); cx.globalCompositeOperation = 'lighter';
@@ -251,7 +253,7 @@
 
     // 3. salt on a part (FlushStar photo)
     const a3 = fadeIn(.145, .16) * fadeOut(.212, .232);
-    if (a3 > 0) draw(PHOTO['unit-corrosion'], a3, lerp(mob ? 2.6 : 2.4, mob ? 2.1 : 1.9, sm(.15, .23, p)), mob ? .74 : .62, .22);
+    if (a3 > 0) draw(PHOTO['unit-corrosion'], a3, lerp(mob ? 2.0 : 2.4, mob ? 1.7 : 1.9, sm(.15, .23, p)), mob ? .74 : .62, .22);
 
     // 4. THE PRODUCT: reveal, then a guided tour of its features
     const a4 = fadeIn(.212, .235) * fadeOut(.43, .45);
@@ -259,7 +261,7 @@
 
     // 5. programs: the switch panel on the real install
     const a5 = fadeIn(.43, .45) * fadeOut(.525, .545);
-    if (a5 > 0) draw(PHOTO['manifold'], a5, lerp(2.2, 2.4, sm(.43, .545, p)), mob ? .2 : .3, .5, 'brightness(.38) blur(1.5px)');
+    if (a5 > 0) draw(PHOTO.product, a5, lerp(mob ? 1.15 : 1.5, mob ? 1.3 : 1.65, sm(.43, .545, p)), mob ? .24 : .3, mob ? .55 : .5, mob ? 'brightness(.42) saturate(1.15)' : 'brightness(.3) saturate(1.15)');
 
     // 6. the real install: manifold + hoses, the flush cycle running
     const a6 = fadeIn(.525, .545) * fadeOut(.705, .725);
@@ -276,7 +278,7 @@
 
     // 7. abilities over the product, dimmed
     const a7 = fadeIn(.705, .725) * fadeOut(.805, .825);
-    if (a7 > 0) draw(PHOTO.product, a7, lerp(1.1, 1.25, sm(.71, .82, p)), .6, .45, 'brightness(.35) blur(2px)');
+    if (a7 > 0) draw(PHOTO.product, a7, lerp(1.05, 1.15, sm(.71, .82, p)), mob ? .24 : .7, mob ? .82 : .45, mob ? 'brightness(.24) saturate(1.1)' : 'brightness(.24) saturate(1.15)');
 
     // 8. how to buy: clean engines running (footage)
     const a8 = fadeIn(.805, .825) * fadeOut(.89, .91);
