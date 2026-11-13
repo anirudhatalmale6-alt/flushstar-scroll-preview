@@ -164,4 +164,20 @@
   .fl-abil-wrap h2{font-size:30px}
 }
 
+
+/* dealer login, always reachable */
+.fl-dealer{position:absolute;top:18px;right:max(18px,calc((100vw - var(--maxw))/2 + 18px));z-index:5;display:inline-flex;align-items:center;gap:9px;padding:10px 18px 10px 14px;border-radius:40px;
+  border:1px solid var(--line-hot);background:rgba(4,7,13,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ice);
+  font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;transition:background .3s,border-color .3s,box-shadow .3s}
+.fl-dealer svg{width:17px;height:17px;fill:none;stroke:var(--volt-hot);stroke-width:1.8;stroke-linecap:round}
+.fl-dealer:hover{background:rgba(46,155,255,.18);border-color:var(--volt);box-shadow:var(--glow)}
+.fl-res{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.fl-res li{position:relative;padding:12px 14px 12px 42px;border:1px solid var(--line);border-radius:6px;background:rgba(4,7,13,.66);font-size:16px;color:var(--ice)}
+.fl-res li::before{content:"\2713";position:absolute;left:15px;top:11px;color:var(--good);font-weight:700}
+@media (max-width:820px){
+  .fl-dealer{top:14px;right:14px;padding:8px 14px 8px 11px;font-size:13px}
+  .fl-hud{top:62px!important}
+  .fl-res li{font-size:14px;padding:9px 12px 9px 36px}.fl-res li::before{left:12px;top:8px}
+}
+
 @media (prefers-reduced-motion:reduce){.fl-hud,.fl-ch{transition:none}}

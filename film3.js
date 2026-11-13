@@ -63,6 +63,7 @@
   }
 
   // ---------- drawing ----------
+  const MAXS = 1.3;   // never blow a photo up past 1.3x its own pixels (unless the screen needs it to cover)
   let W = 0, H = 0, DPR = 1;
   function resize() {
     DPR = Math.min(devicePixelRatio || 1, 2);
@@ -76,7 +77,7 @@
   // cover-fit an image, zoomed around a focus point (fractions of the image); returns the mapping
   function place(img, zoom = 1, fx = .5, fy = .5) {
     const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
-    const s = Math.max(cv.width / iw, cv.height / ih) * zoom;
+    const cov = Math.max(cv.width / iw, cv.height / ih), s = Math.max(cov, Math.min(cov * zoom, MAXS));
     const dw = iw * s, dh = ih * s;
     let x = cv.width / 2 - fx * dw, y = cv.height / 2 - fy * dh;
     x = clamp(x, cv.width - dw, 0); y = clamp(y, cv.height - dh, 0);
@@ -148,7 +149,7 @@
   // place an image so that image point (fu,fv) lands at screen point (sx,sy), at `zoom` x cover scale
   function placeAt(img, zoom, fu, fv, sx, sy) {
     const iw = img.naturalWidth, ih = img.naturalHeight;
-    const s = Math.max(cv.width / iw, cv.height / ih) * zoom, dw = iw * s, dh = ih * s;
+    const cov = Math.max(cv.width / iw, cv.height / ih), s = Math.max(cov, Math.min(cov * zoom, MAXS)), dw = iw * s, dh = ih * s;
     let x = sx * cv.width - fu * dw, y = sy * cv.height - fv * dh;
     x = clamp(x, cv.width - dw, 0); y = clamp(y, cv.height - dh, 0);
     return { x, y, s, map: (u, v) => [x + u * dw, y + v * dh] };
@@ -185,7 +186,7 @@
     const iw = img.naturalWidth, ih = img.naturalHeight, cover = Math.max(cv.width / iw, cv.height / ih);
     const reveal = (mob ? .96 : .6) * cv.width / iw;
     const tour = clamp((p - CALL0 + .02) / .03) * (1 - out);
-    const S = lerp(reveal * (1.12 - .12 * sm(PROD[0], CALL0, p)), cover * z, tour);
+    const S = lerp(reveal * (1.12 - .12 * sm(PROD[0], CALL0, p)), Math.max(cover, Math.min(cover * z, MAXS)), tour);
     const dw = iw * S, dh = ih * S;
     let X = (tour > 0 ? sx : lerp(sx, mob ? .5 : .64, 1 - tour)) * cv.width - lerp(.5, fu, tour) * dw;
     let Y = sy * cv.height - lerp(.5, fv, tour) * dh;
@@ -281,15 +282,15 @@
     if (a7 > 0) draw(PHOTO.product, a7, lerp(1.05, 1.15, sm(.71, .82, p)), mob ? .24 : .7, mob ? .82 : .45, mob ? 'brightness(.24) saturate(1.1)' : 'brightness(.24) saturate(1.15)');
 
     // 8. how to buy: clean engines running (footage)
-    const a8 = fadeIn(.805, .825) * fadeOut(.89, .91);
-    if (a8 > 0) draw(frameOf(pick('honda'), (p - .805) / .105), a8, 1.04, .5, .5, 'brightness(.8)');
+    const a8 = fadeIn(.805, .825) * fadeOut(.885, .905);
+    if (a8 > 0) draw(frameOf(pick('honda'), (p - .805) / .1), a8, 1.04, .5, .5, 'brightness(.78)');
 
     // 9. contact: open water, the wake behind you
-    const a9 = fadeIn(.89, .91);
+    const a9 = fadeIn(.885, .905);
     if (a9 > 0) draw(PHOTO['wake'], a9, lerp(1.25, 1.05, sm(.89, 1, p)), .5, .55, 'brightness(.55) saturate(1.1)');
   }
   // ---------- overlays ----------
-  const marks = [0, .065, .215, .435, .54, .715, .815, .9, 1];
+  const marks = [0, .065, .215, .435, .54, .715, .815, .865, .915, 1];
   const call = document.getElementById('flCall'), callN = document.getElementById('flCallN'), callT = document.getElementById('flCallT'), callP = document.getElementById('flCallP');
   const progs = [...document.querySelectorAll('#flProgs div')], tlHead = document.getElementById('flTlHead');
   let callIdx = -1;
@@ -309,7 +310,7 @@
       r.style.setProperty('--k', (k * 100).toFixed(1) + '%');
       r.classList.toggle('on', p >= marks[i] && (p < marks[i + 1] || i === rail.length - 1));
     });
-    rail[0].parentNode.style.opacity = p > .9 ? 0 : 1;
+    rail[0].parentNode.style.opacity = p > .915 ? 0 : 1;
     cue.style.opacity = p > .012 ? 0 : 1;
 
     // product callout card
